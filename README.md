@@ -1,13 +1,9 @@
-## hash-code-qual-2021
-[![Contributors][contributors-shield]][contributors-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
-
 ## Info
 Our team's "Balkan Khatru" approach to the 2021 Qualification Round (Online) for the Google Hash Code.
 
 ## Team Members
 
-* [https://github.com/christoskatsandris](Christos Katsandris)
-* [https://github.com/vanourogeros](Ioannis Protogeros)
-* [https://github.com/tsoun](Athanasios Tsounakis)
-* [https://github.com/gfragko](Georgios Fragkogiannis)
+* [christoskatsandris](https://github.com/christoskatsandris)-Christos Katsandris
+* [vanourogeros]https://github.com/vanourogeros)-Ioannis Protogeros
+* [tsoun](https://github.com/tsoun)-Athanasios Tsounakis
+* [gfragko](https://github.com/gfragko)-Georgios Fragkogiannis
