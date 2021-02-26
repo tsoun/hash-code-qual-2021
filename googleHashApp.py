@@ -1,7 +1,4 @@
 # Von diesen Straßen wird bleiben: der durch sie hindurchging, der Wind!
-
-import math
-
 howManyIntersectionsWithSchedule = 0
 intersectionsWithSchedule = []
 
@@ -47,11 +44,15 @@ class Intersection:
         self.junctions = 0
         self.incomingStreets = []
         self.outgoingStreets = []
+        self.totalcars = 0
         # schedule[0] is the name of the incoming street, schedule[1] is the duration of the green light
         self.scheduling = []
 
     def setJunctions(self, junctions):
         self.junctions = junctions
+    
+    def setTotalCars(self, totalcars):
+        self.totalcars = totalcars
 
     def addIncomingStreet(self, street):
         self.incomingStreets.append(street)
@@ -85,8 +86,10 @@ def inputData(carsList, streetsList, intersectionsList, howManyIntersections, ho
         streetName = currentStreetLine[2]
         timeNeeded = int(currentStreetLine[3])
         currentStreet = Street(i, beginPoint, endPoint, streetName, timeNeeded)
-        currentStreet.beginPoint.addOutgoingStreet(currentStreet)
-        currentStreet.endPoint.addIncomingStreet(currentStreet)
+        intersectionsList[int(currentStreetLine[0])
+                          ].addOutgoingStreet(currentStreet)
+        intersectionsList[int(currentStreetLine[1])
+                          ].addIncomingStreet(currentStreet)
         streetsList.append(currentStreet)  # street created
 
     for i in range(howManyCars):  # initialize cars
@@ -110,6 +113,9 @@ def calcJunctions(streets):
     for street in streets:
         street.endPoint.junctions += 1
 
+def calcIntersectionCars(intersection):
+    for street in intersection.incomingStreets:
+        intersection.totalcars += street.carsToPass
 
 def createTrafficLights(trafficLightsList, streets):
     for street in streets:
@@ -129,8 +135,8 @@ def saveData(howManyReadyIntersections, readyIntersections):
 
 
 if __name__ == "__main__":
-    inputFile = open("Ins\\f.txt", "rt")  # IMPORTANT
-    outputFile = open("Outs\\outputf.txt", "wt")
+    inputFile = open("a.txt", "rt")  # IMPORTANT
+    outputFile = open("aa.txt", "wt")
     carsList = []  # IMPORTANT
     streetsList = []
     intersectionsList = []
@@ -144,29 +150,28 @@ if __name__ == "__main__":
     howManyCars = int(firstLineOfData[3])
     scoreForReachingInTime = int(firstLineOfData[4])
 
-    inputData(carsList, streetsList, intersectionsList, howManyIntersections, howManyStreets, howManyCars)
+    inputData(carsList, streetsList, intersectionsList, howManyIntersections,
+              howManyStreets, howManyCars)
     inputFile.close()
 
     calcCarsToPass(carsList)
     calcJunctions(streetsList)
     createTrafficLights(trafficLightsList, streetsList)
 
-    if simulationDuration > howManyCars:
-        timeForEachIntersection = simulationDuration//howManyCars
-    else:
-        timeForEachIntersection = (10*simulationDuration)//howManyCars
-
+    timeForEachIntersection = simulationDuration//howManyCars
     for intersection in intersectionsList:
+        calcIntersectionCars(intersection)
         for incomingStreet in intersection.incomingStreets:
-            fraction = intersection.junctions / timeForEachIntersection
-            if fraction < 1:
-                factor = 1
-            else:
-                factor = (math.ceil(fraction / 10.0)) * 10 # round to the nearest ten
-            incomingStreet.trafficLight.setTiming((factor*timeForEachIntersection)//intersection.junctions)
+            #time = int(incomingStreet.carsToPass)*int(timeForEachIntersection)//(int(intersection.junctions)*int(totalcars))
+            #print(timeForEachIntersection)
+            x = incomingStreet.carsToPass
+            incomingStreet.trafficLight.setTiming(
+                1+incomingStreet.carsToPass*timeForEachIntersection//(1+intersection.junctions*intersection.totalcars))
+            cycleList = [incomingStreet.streetName,
+                         incomingStreet.trafficLight.timing]
 
-            cycleList = [incomingStreet.streetName, incomingStreet.trafficLight.timing]
             intersection.scheduling.append(cycleList)
+
         intersectionsWithSchedule.append(intersection)
         howManyIntersectionsWithSchedule += 1
 
