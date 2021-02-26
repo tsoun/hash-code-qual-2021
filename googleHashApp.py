@@ -1,4 +1,4 @@
-# Von dieser Straßen wird bleiben: der durch sie hindurchging, der Wind!
+# Von diesen Straßen wird bleiben: der durch sie hindurchging, der Wind!
 howManyIntersectionsWithSchedule = 0
 intersectionsWithSchedule = []
 
