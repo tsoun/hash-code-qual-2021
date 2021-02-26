@@ -129,8 +129,8 @@ def saveData(howManyReadyIntersections, readyIntersections):
 
 
 if __name__ == "__main__":
-    inputFile = open("f.txt", "rt")  # IMPORTANT
-    outputFile = open("outputf.txt", "wt")
+    inputFile = open("Ins\\f.txt", "rt")  # IMPORTANT
+    outputFile = open("Outs\\outputf.txt", "wt")
     carsList = []  # IMPORTANT
     streetsList = []
     intersectionsList = []
