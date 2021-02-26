@@ -5,7 +5,7 @@
 ## Info
 Our team's "Balkan Khatru" approach to the 2021 Qualification Round (Online) for the Google Hash Code.
 
-## Acknowledgements
+## Team Members
 
 * [https://github.com/christoskatsandris](Christos Katsandris)
 * [https://github.com/vanourogeros](Ioannis Protogeros)
