@@ -1,5 +1,5 @@
 ## Info
-Our team's "Balkan Khatru" approach to the 2021 Qualification Round (Online) for the Google Hash Code. We reached #995 place on the Extended scoreboard, ranking #21 in Greece.
+Our team's "Balkan Khatru" approach to the 2021 Qualification Round (Online) for the Google Hash Code. We reached place #995 on the Extended scoreboard, ranked #21 in Greece.
 
 ## Team Members
 
